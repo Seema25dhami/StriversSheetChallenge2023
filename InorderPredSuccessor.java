@@ -17,6 +17,12 @@ import java.util.ArrayList.*;
 	}
 
 *************************************************************/
+/* Optimised approach :
+1. traverse the BST 
+2. compare the node with the key and update the successor and predecessor accordingly,
+TC - O(Height of tree)
+SC - O(1)
+*/
 
 
 
@@ -34,22 +40,22 @@ public class Solution {
 
 			}
 			else if (key < root.data) {
-                res.set(1, root.data); // Update successor
-                root = root.left;
-            } else {
-                // Key found, update both predecessor and successor and exit loop
-                if (root.left != null) {
-                    res.set(0, findMax(root.left));
-                }
-                if (root.right != null) {
-                    res.set(1, findMin(root.right));
-                }
-                break;
-            }
-        }
+                		res.set(1, root.data); // Update successor
+               			root = root.left;
+            		} else {
+	                // Key found, update both predecessor and successor and exit loop
+	                if (root.left != null) {
+	                    res.set(0, findMax(root.left));
+	                }
+	                if (root.right != null) {
+	                    res.set(1, findMin(root.right));
+	                }
+	                break;
+	            }
+	        }
 
-        return res;
-    }
+	        return res;
+	}
 
     private static int findMax(BinaryTreeNode<Integer> node) {
         while (node.right != null) {
